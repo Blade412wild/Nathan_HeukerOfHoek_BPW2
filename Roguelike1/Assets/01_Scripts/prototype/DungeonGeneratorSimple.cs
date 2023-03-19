@@ -28,6 +28,7 @@ namespace SimpleDungeon
         {
             Generate();
             TileType TargetType = dungeon[spawnpointCenter];
+            Debug.Log(dungeon);
             Debug.Log(spawnpointCenter);
             Debug.Log(TargetType + " dit is het type van mijn ondergrond");
             //Debug.Log(roomList[0].GetCenter());

@@ -26,15 +26,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        dungeon = new Dictionary<Vector3Int, TileType>();
         currentLocation = Vector3Int.RoundToInt(transform.position);
         //Debug.Log(currentLocation.x);
         //Debug.Log(currentLocation.z);
 
         dungeon = DungeonGeneration.dungeon;
-        TileType currentLocationValue = dungeon[currentLocation];
+        Debug.Log(dungeon);
+        //TileType currentLocationValue = dungeon[currentLocation];
         Debug.Log(currentLocation);
-        Debug.Log(currentLocationValue);
+        //Debug.Log(currentLocationValue);
     }
 
     private void Update()
