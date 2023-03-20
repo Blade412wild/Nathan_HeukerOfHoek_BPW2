@@ -27,6 +27,7 @@ namespace SimpleDungeon
         public GameObject Player;
         public GameObject floorPrefab;
         public GameObject wallPrefab;
+        public GameObject Portal;
 
 
         public Dictionary<Vector3Int, TileType> dungeon = new Dictionary<Vector3Int, TileType>();
@@ -148,6 +149,12 @@ roomList.Count];
             var player = Instantiate(Player, spawnpointCenter, Quaternion.identity);
             player.GetComponent<PlayerMovement>().SetupPlayer(this);
             Debug.Log(spawnpointCenter + "dit komt uit DungeonGeneration Script");
+
+        }
+
+        public void SpawnPortal()
+        {
+            Room LastRoom = roomList[maxRoomSize];
 
         }
 
