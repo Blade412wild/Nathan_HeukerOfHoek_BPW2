@@ -152,7 +152,8 @@ roomList.Count];
             //float VerschilPlayerYGroundY = Player.transform.localScale.y - floorPrefab.transform.localScale.y;
             //SpawnpointCenter.y = VerschilPlayerYGroundY;
             spawnpointCenter.y = 0;
-            Instantiate(Player, spawnpointCenter, Quaternion.identity);
+            var player = Instantiate(Player, spawnpointCenter, Quaternion.identity);
+            player.GetComponent<PlayerMovement>().SetupPlayer(this);
             Debug.Log(spawnpointCenter + "dit komt uit DungeonGeneration Script");
 
         }
