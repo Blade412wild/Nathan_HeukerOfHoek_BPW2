@@ -3,20 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.InputSystem;
+using System.Runtime.CompilerServices;
 
 namespace SimpleDungeon
 {
     public enum TileType { Floor, Wall }
     public class DungeonGeneratorSimple : MonoBehaviour
     {
-        public GameObject Player;
-        public GameObject floorPrefab;
-        public GameObject wallPrefab;
+        [Header("EnemyStats")]
+        public int MaxEnemies;
+        public int MinEnemies;
+
+
+        [Header("Dungeon Generation")]
         public int gridWidth = 100;
         public int gridHeight = 100;
         public int minRoomSize = 3;
         public int maxRoomSize = 7;
         public int numRooms = 10;
+
+        [Header("References")]
+        public GameObject Enemy;
+        public GameObject Player;
+        public GameObject floorPrefab;
+        public GameObject wallPrefab;
+
+
         public Dictionary<Vector3Int, TileType> dungeon = new Dictionary<Vector3Int, TileType>();
         public List<Room> roomList = new List<Room>();
         public List<GameObject> allInstantiatedPrefabs = new List<GameObject>();
@@ -28,9 +40,9 @@ namespace SimpleDungeon
         {
             Generate();
             TileType TargetType = dungeon[spawnpointCenter];
-            Debug.Log(dungeon);
-            Debug.Log(spawnpointCenter);
-            Debug.Log(TargetType + " dit is het type van mijn ondergrond");
+            //Debug.Log(dungeon);
+            //Debug.Log(spawnpointCenter);
+            //Debug.Log(TargetType + " dit is het type van mijn ondergrond");
             //Debug.Log(roomList[0].GetCenter());
         }
         /// <summary>
@@ -53,6 +65,7 @@ namespace SimpleDungeon
             AllocateWalls();
             SpawnDungeon();
             SpawnPlayer();
+            SpawnEnemy();
         }
         [ContextMenu("Clear Dungeon")]
         public void ClearDungeon()
@@ -140,8 +153,28 @@ roomList.Count];
             //SpawnpointCenter.y = VerschilPlayerYGroundY;
             spawnpointCenter.y = 0;
             Instantiate(Player, spawnpointCenter, Quaternion.identity);
-            Debug.Log(spawnpointCenter);
+            Debug.Log(spawnpointCenter + "dit komt uit DungeonGeneration Script");
 
+        }
+
+        public TileType FloorCheck(Vector3Int TargetPosition)
+        {
+            TileType TargetPositionValue = dungeon[TargetPosition];
+            return TargetPositionValue;
+        }
+
+        private void SpawnEnemy()
+        {
+            int EnemyCount = Random.Range(MinEnemies, (MaxEnemies + 1));
+
+            for (int i = 0; i < EnemyCount; i++)
+            {
+                int RandomRoomIndex = Random.Range(1, numRooms);
+                Room SpawnRoom = roomList[RandomRoomIndex];
+                Vector3Int SpawnPosition = SpawnRoom.GetRandomPositionInRoom();
+
+                Instantiate(Enemy, SpawnPosition, Quaternion.identity);
+            }
         }
 
         public void SpawnDungeon()
