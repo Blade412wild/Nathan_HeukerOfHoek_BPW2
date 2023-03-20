@@ -39,11 +39,6 @@ namespace SimpleDungeon
         void Start()
         {
             Generate();
-            TileType TargetType = dungeon[spawnpointCenter];
-            //Debug.Log(dungeon);
-            //Debug.Log(spawnpointCenter);
-            //Debug.Log(TargetType + " dit is het type van mijn ondergrond");
-            //Debug.Log(roomList[0].GetCenter());
         }
         /// <summary>
         /// Generates the dungeon
@@ -149,19 +144,11 @@ roomList.Count];
         {
             Room firstRoom = roomList[0];
             spawnpointCenter = firstRoom.GetCenter();
-            //float VerschilPlayerYGroundY = Player.transform.localScale.y - floorPrefab.transform.localScale.y;
-            //SpawnpointCenter.y = VerschilPlayerYGroundY;
             spawnpointCenter.y = 0;
             var player = Instantiate(Player, spawnpointCenter, Quaternion.identity);
             player.GetComponent<PlayerMovement>().SetupPlayer(this);
             Debug.Log(spawnpointCenter + "dit komt uit DungeonGeneration Script");
 
-        }
-
-        public TileType FloorCheck(Vector3Int TargetPosition)
-        {
-            TileType TargetPositionValue = dungeon[TargetPosition];
-            return TargetPositionValue;
         }
 
         private void SpawnEnemy()
