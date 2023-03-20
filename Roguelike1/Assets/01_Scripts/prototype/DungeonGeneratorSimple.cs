@@ -22,14 +22,14 @@ namespace SimpleDungeon
         public List<GameObject> allInstantiatedPrefabs = new List<GameObject>();
 
         //eigen variable
-        private Vector3Int spawnpointCenter;
+        public Vector3Int spawnpointCenter;
 
         void Start()
         {
             Generate();
             TileType TargetType = dungeon[spawnpointCenter];
-            Debug.Log(dungeon);
-            Debug.Log(spawnpointCenter);
+            //Debug.Log(dungeon);
+            Debug.Log(spawnpointCenter + "Spawnpoint");
             Debug.Log(TargetType + " dit is het type van mijn ondergrond");
             //Debug.Log(roomList[0].GetCenter());
         }
@@ -130,6 +130,24 @@ roomList.Count];
                 if (dungeon.ContainsKey(position)) { continue; }
                 dungeon.Add(position, TileType.Floor);
             }
+        }
+
+        public TileType TileTypeTest(Vector3Int TargetPosition)
+        {
+            Debug.Log(TargetPosition + " TargetPosition in TileTypeCheck");
+            TileType TargetPositionValue;
+
+            if (dungeon.ContainsKey(TargetPosition))
+            {
+                Debug.Log("TargetPosition zit er tussen");
+            }
+            else
+            {
+                Debug.Log("TargetPosition zit er niet tussen");
+
+            }
+            return TileType.Wall;
+
         }
 
         public void SpawnPlayer()

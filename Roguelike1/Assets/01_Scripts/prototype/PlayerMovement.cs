@@ -27,21 +27,20 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentLocation = Vector3Int.RoundToInt(transform.position);
+        //currentLocation = DungeonGeneration.spawnpointCenter;
+        TileType currentLocationValue = DungeonGeneration.TileTypeTest(currentLocation);
         //Debug.Log(currentLocation.x);
         //Debug.Log(currentLocation.z);
+        Debug.Log(currentLocation + "dit komt uit PlayerMovement Script");
 
         dungeon = DungeonGeneration.dungeon;
-        Debug.Log(dungeon);
+
+        //Debug.Log(dungeon); // Ik weet niet hoe ik een dictionary kan gebruiken over meerdere scripts;
+        
         //TileType currentLocationValue = dungeon[currentLocation];
         Debug.Log(currentLocation);
         //Debug.Log(currentLocationValue);
     }
-
-    private void Update()
-    {
-        
-    }
-
     private void Movement()
     {
         moveDirection = Vector2Int.RoundToInt(PlayerInput.Player.Movement.ReadValue<Vector2>());
@@ -54,24 +53,28 @@ public class PlayerMovement : MonoBehaviour
    
     private void IsPossibleToMove()
     {
+        // hier doe ik de Vector2 Input + mijn current
         int TargetPositionX = currentLocation.x + moveDirection.x;
         int TargetPositionY = currentLocation.z + moveDirection.y;
         Vector3Int TargetPosition = new Vector3Int(TargetPositionX, 0, TargetPositionY);
-        TileType TargetPositionValue = dungeon[currentLocation];
         Debug.Log(TargetPosition);
-        Debug.Log(TargetPositionValue);
-
+        TileType TargetPositionValue = DungeonGeneration.TileTypeTest(TargetPosition);
+        //Debug.Log(TargetPosition); 
+        //Debug.Log(TargetPositionValue);
+        /*
         if( TargetPositionValue == TileType.Floor)
         {
             Move(TargetPosition);
         }
+        */
 
-     
+
     }
    
-   private void Move(Vector3Int TargetPositionr)
+   private void Move(Vector3Int TargetPosition)
    {
-        transform.position = TargetPositionr;
+        transform.position = TargetPosition;
+        currentLocation = TargetPosition;
    }
     
 
