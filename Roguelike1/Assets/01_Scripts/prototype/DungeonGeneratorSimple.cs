@@ -28,6 +28,7 @@ namespace SimpleDungeon
         public GameObject floorPrefab;
         public GameObject wallPrefab;
         public GameObject Portal;
+        public GameObject KeyPrefab;
 
 
         public Dictionary<Vector3Int, TileType> dungeon = new Dictionary<Vector3Int, TileType>();
@@ -60,6 +61,8 @@ namespace SimpleDungeon
             ConnectRooms();
             AllocateWalls();
             SpawnDungeon();
+            SpawnPortal();
+            SpawnKey();
             SpawnPlayer();
             SpawnEnemy();
         }
@@ -152,9 +155,23 @@ roomList.Count];
 
         }
 
-        public void SpawnPortal()
+        private void SpawnKey()
         {
-            Room LastRoom = roomList[maxRoomSize];
+            int RandomNumber = Random.Range(1, roomList.Count);
+            Room RandomRoom = roomList[RandomNumber];
+            Vector3Int KeySpawnLocation = RandomRoom.GetCenter();
+            KeySpawnLocation.y = 2;
+            Instantiate(KeyPrefab,KeySpawnLocation, Quaternion.identity);
+
+        }
+
+        private void SpawnPortal()
+        {
+            Room LastRoom = roomList[numRooms - 1];
+            Vector3Int SpawnPortalLocation = LastRoom.GetCenter();
+
+            Instantiate(Portal, SpawnPortalLocation, Quaternion.identity);
+            Debug.Log("SpawnedPortal");
 
         }
 

@@ -155,7 +155,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -370,11 +370,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonGenerator
       objectReference: {fileID: 0}
-    - target: {fileID: 5541075443400567392, guid: d6ed583941eb38140873b6925e8382e8,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5541075443400567398, guid: d6ed583941eb38140873b6925e8382e8,
         type: 3}
       propertyPath: m_RootOrder
@@ -430,5 +425,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
+        type: 3}
+      propertyPath: KeyPrefab
+      value: 
+      objectReference: {fileID: 8871224465950278979, guid: 8469d9c1da7989047a875eda56105d47,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ed583941eb38140873b6925e8382e8, type: 3}

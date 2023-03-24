@@ -44,15 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e8ef50f0260c44a9418f00cb8135b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 697837736812728722, guid: b1280958ca47f674a8fc2903fee17e5e, type: 3}
-  floorPrefab: {fileID: 4245413550055569476, guid: 86c9846acedd0454ba500b81cca8596a,
-    type: 3}
-  wallPrefab: {fileID: 8082695403284138577, guid: 1302ba58cf29d8a4796fc17f72640e39,
-    type: 3}
+  MaxEnemies: 0
+  MinEnemies: 0
   gridWidth: 100
   gridHeight: 100
   minRoomSize: 9
   maxRoomSize: 18
   numRooms: 8
+  Enemy: {fileID: 9011892157876785159, guid: 248be3deab70b3b4bae546b03372a894, type: 3}
+  Player: {fileID: 697837736812728722, guid: b1280958ca47f674a8fc2903fee17e5e, type: 3}
+  floorPrefab: {fileID: 4245413550055569476, guid: 86c9846acedd0454ba500b81cca8596a,
+    type: 3}
+  wallPrefab: {fileID: 8082695403284138577, guid: 1302ba58cf29d8a4796fc17f72640e39,
+    type: 3}
+  Portal: {fileID: 3153730823168588842, guid: c306d1a05b70d5341a6939aaa9da780a, type: 3}
   allInstantiatedPrefabs: []
-  currentLocation: {x: 0, y: 0, z: 0}
