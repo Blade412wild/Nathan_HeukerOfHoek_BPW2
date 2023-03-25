@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 697837736812728812}
+  OnMove: {fileID: 11400000, guid: 42c21153d5f5e7e44a3cfbe824ab1b91, type: 2}
 --- !u!1 &5619357382762371356
 GameObject:
   m_ObjectHideFlags: 0

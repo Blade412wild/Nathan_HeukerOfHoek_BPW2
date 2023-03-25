@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleDungeon;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Player player;
     private PlayerInputAction PlayerInput;
-    private Vector3Int currentLocation;
+    public Vector3Int currentLocation;
     private Dictionary<Vector3Int, TileType> dungeon;
     private Vector2Int moveDirection;
+
+    // Events 
+    [SerializeField]
+    private GameEvent OnMove;
 
     private void Awake()
     {
@@ -79,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
         }
         transform.position = TargetPositionr;
         currentLocation = TargetPositionr;
+        OnMove?.Invoke();
+
    }
     
 }

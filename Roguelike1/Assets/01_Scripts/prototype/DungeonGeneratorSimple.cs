@@ -30,13 +30,18 @@ namespace SimpleDungeon
         public GameObject Portal;
         public GameObject KeyPrefab;
 
+        // Location Variables
+        public Vector3Int PortalSpawnLocation;
+        public Vector3Int KeySpawnLocation;
+        private Vector3Int PlayerSpawnPosition;
 
+
+        // Dictionaries & Lists
         public Dictionary<Vector3Int, TileType> dungeon = new Dictionary<Vector3Int, TileType>();
+        public Dictionary<Vector3Int, GameObject> Enemies = new Dictionary<Vector3Int, GameObject>(); 
         public List<Room> roomList = new List<Room>();
         public List<GameObject> allInstantiatedPrefabs = new List<GameObject>();
 
-        //eigen variable
-        private Vector3Int spawnpointCenter;
 
         void Start()
         {
@@ -147,11 +152,11 @@ roomList.Count];
         public void SpawnPlayer()
         {
             Room firstRoom = roomList[0];
-            spawnpointCenter = firstRoom.GetCenter();
-            spawnpointCenter.y = 0;
-            var player = Instantiate(Player, spawnpointCenter, Quaternion.identity);
+            PlayerSpawnPosition = firstRoom.GetCenter();
+            PlayerSpawnPosition.y = 0;
+            var player = Instantiate(Player, PlayerSpawnPosition, Quaternion.identity);
             player.GetComponent<PlayerMovement>().SetupPlayer(this);
-            Debug.Log(spawnpointCenter + "dit komt uit DungeonGeneration Script");
+            Debug.Log(PlayerSpawnPosition + "dit komt uit DungeonGeneration Script");
 
         }
 
@@ -159,7 +164,7 @@ roomList.Count];
         {
             int RandomNumber = Random.Range(1, roomList.Count);
             Room RandomRoom = roomList[RandomNumber];
-            Vector3Int KeySpawnLocation = RandomRoom.GetCenter();
+            KeySpawnLocation = RandomRoom.GetCenter();
             KeySpawnLocation.y = 2;
             Instantiate(KeyPrefab,KeySpawnLocation, Quaternion.identity);
 
@@ -168,9 +173,9 @@ roomList.Count];
         private void SpawnPortal()
         {
             Room LastRoom = roomList[numRooms - 1];
-            Vector3Int SpawnPortalLocation = LastRoom.GetCenter();
+            PortalSpawnLocation = LastRoom.GetCenter();
 
-            Instantiate(Portal, SpawnPortalLocation, Quaternion.identity);
+            Instantiate(Portal, PortalSpawnLocation, Quaternion.identity);
             Debug.Log("SpawnedPortal");
 
         }
@@ -183,9 +188,18 @@ roomList.Count];
             {
                 int RandomRoomIndex = Random.Range(1, numRooms);
                 Room SpawnRoom = roomList[RandomRoomIndex];
-                Vector3Int SpawnPosition = SpawnRoom.GetRandomPositionInRoom();
+                Vector3Int EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
 
-                Instantiate(Enemy, SpawnPosition, Quaternion.identity);
+                // hier checkt die of de Enemy niet op een van de andere objecteSpawnt
+                while (EnemySpawnPosition == PortalSpawnLocation || EnemySpawnPosition == KeySpawnLocation || EnemySpawnPosition == PlayerSpawnPosition)
+                {
+                    EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
+                }
+
+            
+                Enemies.Add(EnemySpawnPosition, Enemy);
+
+                Instantiate(Enemy, EnemySpawnPosition, Quaternion.identity);
             }
         }
 

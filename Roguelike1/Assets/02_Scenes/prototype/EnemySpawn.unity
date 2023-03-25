@@ -427,9 +427,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
         type: 3}
+      propertyPath: numRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
+        type: 3}
       propertyPath: KeyPrefab
       value: 
       objectReference: {fileID: 8871224465950278979, guid: 8469d9c1da7989047a875eda56105d47,
         type: 3}
+    - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
+        type: 3}
+      propertyPath: MaxEnemies
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
+        type: 3}
+      propertyPath: MinEnemies
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ed583941eb38140873b6925e8382e8, type: 3}
