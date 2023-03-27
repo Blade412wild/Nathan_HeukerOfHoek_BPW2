@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 697837736812728813}
   - component: {fileID: 697837736812728812}
   - component: {fileID: 697837736812728723}
+  - component: {fileID: 2275830688890109362}
   m_Layer: 0
   m_Name: PlayerPlaceHolder
   m_TagString: Untagged
@@ -255,7 +256,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 697837736812728812}
+  currentLocation: {x: 0, y: 0, z: 0}
   OnMove: {fileID: 11400000, guid: 42c21153d5f5e7e44a3cfbe824ab1b91, type: 2}
+--- !u!114 &2275830688890109362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697837736812728722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e041a2e96b7be646bc88d98b161cbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Nathan
+  unitLevel: 0
+  damage: 0
+  maxHP: 0
+  currentHP: 0
 --- !u!1 &5619357382762371356
 GameObject:
   m_ObjectHideFlags: 0

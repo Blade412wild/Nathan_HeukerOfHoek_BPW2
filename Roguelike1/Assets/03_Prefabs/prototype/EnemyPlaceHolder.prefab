@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 5310680970826875439}
   - component: {fileID: 6132093179866951438}
   - component: {fileID: -450938226329132024}
+  - component: {fileID: 7110012605233628976}
   m_Layer: 0
   m_Name: EnemyPlaceHolder
   m_TagString: Untagged
@@ -303,3 +304,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7110012605233628976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011892157876785159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e041a2e96b7be646bc88d98b161cbb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: 'BadGUy '
+  unitLevel: 2
+  damage: 5
+  maxHP: 30
+  currentHP: 30
