@@ -17,8 +17,7 @@ public class CubeMovement : MonoBehaviour
     {
 
         playerInput = new PlayerInputAction();
-        playerInput.Player.Enable();
-        playerInput.Player.Test.performed += ctx => { Movement(); };
+        playerInput.FreeRoam.Test.performed += ctx => { Movement(); };
 
         currentPosition = Vector3Int.RoundToInt(transform.position);
     }

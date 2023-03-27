@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
+    private PlayerInputAction inputActions;
     private FSM fsm;
  
     // Start is called before the first frame update
     void Start()
     {
-        fsm = new FSM(typeof(StartState), GetComponent<BaseState>());
+        inputActions = new PlayerInputAction();
+        inputActions.FreeRoam.Disable();
+        inputActions.popMenu.Disable();
+        inputActions.battleMode.Disable();
+        inputActions.GameResult.Disable();
+
+
+
+        fsm = new FSM(typeof(FreeRoamState), GetComponents<BaseState>());
 
     }
 

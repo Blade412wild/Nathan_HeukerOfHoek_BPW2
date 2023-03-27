@@ -22,8 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         PlayerInput = new PlayerInputAction();
-        PlayerInput.Player.Enable();
-        PlayerInput.Player.Movement.performed += ctx => { Movement(); };
+        PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
 
     }
 
@@ -45,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        moveDirection = Vector2Int.RoundToInt(PlayerInput.Player.Movement.ReadValue<Vector2>());
+        moveDirection = Vector2Int.RoundToInt(PlayerInput.FreeRoam.Movement.ReadValue<Vector2>());
         IsPossibleToMove();
     }
 

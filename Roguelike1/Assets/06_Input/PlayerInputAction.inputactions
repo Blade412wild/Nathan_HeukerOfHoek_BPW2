@@ -2,7 +2,7 @@
     "name": "PlayerInputAction",
     "maps": [
         {
-            "name": "Player",
+            "name": "FreeRoam",
             "id": "a5620fd8-9416-4bd8-86fd-9afd11d2097c",
             "actions": [
                 {
@@ -27,6 +27,15 @@
                     "name": "PopUpMenu",
                     "type": "Button",
                     "id": "c92b22f8-642c-4bb5-9a72-7efcd752e6af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "a72cc657-18f5-4fa3-af30-cf6562492a78",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -108,6 +117,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PopUpMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67141812-4f2a-498c-8861-871c788dbc9f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -258,9 +278,9 @@
             "id": "b41b3edd-5a91-45b3-a54d-6dd9435f73f5",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MouseLeftClick",
                     "type": "Button",
-                    "id": "475a7d53-f1c1-494d-9989-2a184b6dafe6",
+                    "id": "33fc325e-028f-4fc0-bf68-5a7461c9f914",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -270,12 +290,40 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "b4d21490-c5c6-4867-b7b1-2c437d0f5ae5",
-                    "path": "",
+                    "id": "96802cb6-0411-40ca-8a9c-a37ea0a05e98",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MouseLeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GameResult",
+            "id": "171ceb83-8a8e-4a6b-bece-04967c3cc6c5",
+            "actions": [
+                {
+                    "name": "MouseLeftClick",
+                    "type": "Button",
+                    "id": "088346d6-5b11-4a0a-aef8-3bdae6636285",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "52fca4d4-acce-4af7-a533-15f7d561f21f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

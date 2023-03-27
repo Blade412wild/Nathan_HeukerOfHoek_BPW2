@@ -24,7 +24,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputAction"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""FreeRoam"",
             ""id"": ""a5620fd8-9416-4bd8-86fd-9afd11d2097c"",
             ""actions"": [
                 {
@@ -49,6 +49,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""name"": ""PopUpMenu"",
                     ""type"": ""Button"",
                     ""id"": ""c92b22f8-642c-4bb5-9a72-7efcd752e6af"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""a72cc657-18f5-4fa3-af30-cf6562492a78"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -130,6 +139,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PopUpMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67141812-4f2a-498c-8861-871c788dbc9f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -280,9 +300,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             ""id"": ""b41b3edd-5a91-45b3-a54d-6dd9435f73f5"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""MouseLeftClick"",
                     ""type"": ""Button"",
-                    ""id"": ""475a7d53-f1c1-494d-9989-2a184b6dafe6"",
+                    ""id"": ""33fc325e-028f-4fc0-bf68-5a7461c9f914"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -292,12 +312,40 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""b4d21490-c5c6-4867-b7b1-2c437d0f5ae5"",
-                    ""path"": """",
+                    ""id"": ""96802cb6-0411-40ca-8a9c-a37ea0a05e98"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MouseLeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GameResult"",
+            ""id"": ""171ceb83-8a8e-4a6b-bece-04967c3cc6c5"",
+            ""actions"": [
+                {
+                    ""name"": ""MouseLeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""088346d6-5b11-4a0a-aef8-3bdae6636285"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""52fca4d4-acce-4af7-a533-15f7d561f21f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -306,11 +354,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Test = m_Player.FindAction("Test", throwIfNotFound: true);
-        m_Player_PopUpMenu = m_Player.FindAction("PopUpMenu", throwIfNotFound: true);
+        // FreeRoam
+        m_FreeRoam = asset.FindActionMap("FreeRoam", throwIfNotFound: true);
+        m_FreeRoam_Movement = m_FreeRoam.FindAction("Movement", throwIfNotFound: true);
+        m_FreeRoam_Test = m_FreeRoam.FindAction("Test", throwIfNotFound: true);
+        m_FreeRoam_PopUpMenu = m_FreeRoam.FindAction("PopUpMenu", throwIfNotFound: true);
+        m_FreeRoam_Click = m_FreeRoam.FindAction("Click", throwIfNotFound: true);
         // battleMode
         m_battleMode = asset.FindActionMap("battleMode", throwIfNotFound: true);
         m_battleMode_PopUpMenu = m_battleMode.FindAction("PopUpMenu", throwIfNotFound: true);
@@ -321,7 +370,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_popMenu_MouseLeftClick = m_popMenu.FindAction("MouseLeftClick", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
-        m_Menu_Newaction = m_Menu.FindAction("New action", throwIfNotFound: true);
+        m_Menu_MouseLeftClick = m_Menu.FindAction("MouseLeftClick", throwIfNotFound: true);
+        // GameResult
+        m_GameResult = asset.FindActionMap("GameResult", throwIfNotFound: true);
+        m_GameResult_MouseLeftClick = m_GameResult.FindAction("MouseLeftClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -380,28 +432,30 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
-    private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Test;
-    private readonly InputAction m_Player_PopUpMenu;
-    public struct PlayerActions
+    // FreeRoam
+    private readonly InputActionMap m_FreeRoam;
+    private List<IFreeRoamActions> m_FreeRoamActionsCallbackInterfaces = new List<IFreeRoamActions>();
+    private readonly InputAction m_FreeRoam_Movement;
+    private readonly InputAction m_FreeRoam_Test;
+    private readonly InputAction m_FreeRoam_PopUpMenu;
+    private readonly InputAction m_FreeRoam_Click;
+    public struct FreeRoamActions
     {
         private @PlayerInputAction m_Wrapper;
-        public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Test => m_Wrapper.m_Player_Test;
-        public InputAction @PopUpMenu => m_Wrapper.m_Player_PopUpMenu;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public FreeRoamActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_FreeRoam_Movement;
+        public InputAction @Test => m_Wrapper.m_FreeRoam_Test;
+        public InputAction @PopUpMenu => m_Wrapper.m_FreeRoam_PopUpMenu;
+        public InputAction @Click => m_Wrapper.m_FreeRoam_Click;
+        public InputActionMap Get() { return m_Wrapper.m_FreeRoam; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void AddCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(FreeRoamActions set) { return set.Get(); }
+        public void AddCallbacks(IFreeRoamActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_FreeRoamActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_FreeRoamActionsCallbackInterfaces.Add(instance);
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
@@ -411,9 +465,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @PopUpMenu.started += instance.OnPopUpMenu;
             @PopUpMenu.performed += instance.OnPopUpMenu;
             @PopUpMenu.canceled += instance.OnPopUpMenu;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
-        private void UnregisterCallbacks(IPlayerActions instance)
+        private void UnregisterCallbacks(IFreeRoamActions instance)
         {
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
@@ -424,23 +481,26 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @PopUpMenu.started -= instance.OnPopUpMenu;
             @PopUpMenu.performed -= instance.OnPopUpMenu;
             @PopUpMenu.canceled -= instance.OnPopUpMenu;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
-        public void RemoveCallbacks(IPlayerActions instance)
+        public void RemoveCallbacks(IFreeRoamActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_FreeRoamActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlayerActions instance)
+        public void SetCallbacks(IFreeRoamActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_FreeRoamActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_FreeRoamActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public FreeRoamActions @FreeRoam => new FreeRoamActions(this);
 
     // battleMode
     private readonly InputActionMap m_battleMode;
@@ -553,12 +613,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     // Menu
     private readonly InputActionMap m_Menu;
     private List<IMenuActions> m_MenuActionsCallbackInterfaces = new List<IMenuActions>();
-    private readonly InputAction m_Menu_Newaction;
+    private readonly InputAction m_Menu_MouseLeftClick;
     public struct MenuActions
     {
         private @PlayerInputAction m_Wrapper;
         public MenuActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Menu_Newaction;
+        public InputAction @MouseLeftClick => m_Wrapper.m_Menu_MouseLeftClick;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,16 +628,16 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MenuActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MenuActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @MouseLeftClick.started += instance.OnMouseLeftClick;
+            @MouseLeftClick.performed += instance.OnMouseLeftClick;
+            @MouseLeftClick.canceled += instance.OnMouseLeftClick;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @MouseLeftClick.started -= instance.OnMouseLeftClick;
+            @MouseLeftClick.performed -= instance.OnMouseLeftClick;
+            @MouseLeftClick.canceled -= instance.OnMouseLeftClick;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -595,11 +655,58 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
-    public interface IPlayerActions
+
+    // GameResult
+    private readonly InputActionMap m_GameResult;
+    private List<IGameResultActions> m_GameResultActionsCallbackInterfaces = new List<IGameResultActions>();
+    private readonly InputAction m_GameResult_MouseLeftClick;
+    public struct GameResultActions
+    {
+        private @PlayerInputAction m_Wrapper;
+        public GameResultActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MouseLeftClick => m_Wrapper.m_GameResult_MouseLeftClick;
+        public InputActionMap Get() { return m_Wrapper.m_GameResult; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameResultActions set) { return set.Get(); }
+        public void AddCallbacks(IGameResultActions instance)
+        {
+            if (instance == null || m_Wrapper.m_GameResultActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameResultActionsCallbackInterfaces.Add(instance);
+            @MouseLeftClick.started += instance.OnMouseLeftClick;
+            @MouseLeftClick.performed += instance.OnMouseLeftClick;
+            @MouseLeftClick.canceled += instance.OnMouseLeftClick;
+        }
+
+        private void UnregisterCallbacks(IGameResultActions instance)
+        {
+            @MouseLeftClick.started -= instance.OnMouseLeftClick;
+            @MouseLeftClick.performed -= instance.OnMouseLeftClick;
+            @MouseLeftClick.canceled -= instance.OnMouseLeftClick;
+        }
+
+        public void RemoveCallbacks(IGameResultActions instance)
+        {
+            if (m_Wrapper.m_GameResultActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IGameResultActions instance)
+        {
+            foreach (var item in m_Wrapper.m_GameResultActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_GameResultActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public GameResultActions @GameResult => new GameResultActions(this);
+    public interface IFreeRoamActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnTest(InputAction.CallbackContext context);
         void OnPopUpMenu(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
     public interface IBattleModeActions
     {
@@ -613,6 +720,10 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     }
     public interface IMenuActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMouseLeftClick(InputAction.CallbackContext context);
+    }
+    public interface IGameResultActions
+    {
+        void OnMouseLeftClick(InputAction.CallbackContext context);
     }
 }

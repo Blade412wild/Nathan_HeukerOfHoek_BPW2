@@ -40,7 +40,7 @@ public class PlayerTurn : BaseState
     private void InputSetUp()
     {
         playerInputAction = new PlayerInputAction();
-        playerInputAction.Player.Disable();
+        playerInputAction.FreeRoam.Disable();
         playerInputAction.battleMode.Enable();
 
     }
