@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     // Events 
     [SerializeField]
     private GameEvent OnMove;
+    [SerializeField]
+    private GameEvent OnPlayerSpawn;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         currentLocation = Vector3Int.RoundToInt(transform.position);
+        OnPlayerSpawn?.Invoke();
     }
 
     public void SetupPlayer(DungeonGeneratorSimple dungeon)

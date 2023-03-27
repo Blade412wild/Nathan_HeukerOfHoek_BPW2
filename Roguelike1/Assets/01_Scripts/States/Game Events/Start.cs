@@ -15,10 +15,6 @@ public class Start : BaseState
     private Unit playerUnit;
     private Unit EnemyUnit;
 
-    public Text CurrentHP;
-    public Text CurrentEnergy;
-    public Text CurrentTurn;
-
     public override void OnEnter()
     {
         Debug.Log("Entered StartState");
@@ -32,11 +28,7 @@ public class Start : BaseState
 
     public override void OnUpdate()
     {
-        if (win)
-        {
-            owner.SwitchState(typeof(Won));
-        }
-    
+
     }
 
     private void SetupBattle()
@@ -46,6 +38,8 @@ public class Start : BaseState
 
         playerUnit = PlayerGo.GetComponent<Unit>();
         EnemyUnit = EnemyGo.GetComponent<Unit>();
+
+        owner.SwitchState(typeof(PlayerTurn));
     }
 }
 

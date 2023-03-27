@@ -1,16 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    public string unitName;
-    public int unitLevel;
+    public string UnitName;
+    public int UnitLevel;
 
-    public int damage;
+    public int Damage;
 
-    public int maxHP;
-    public int currentHP;
+    public int MaxHP;
+    public int CurrentHP;
     public int MaxEnergy;
+    public int CurrentEnergy;
+    public Text CurrentTurn;
+
+    public bool TakeDamage(int dmg)
+    {
+        CurrentHP -= dmg;
+
+        if(CurrentHP <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
