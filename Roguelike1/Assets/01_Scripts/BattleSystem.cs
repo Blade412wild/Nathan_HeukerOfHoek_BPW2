@@ -8,7 +8,7 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fsm = new FSM(typeof(Start), GetComponent<BaseState>());
+        fsm = new FSM(typeof(StartState), GetComponents<BaseState>());
         Debug.Log(fsm.ToString());
     }
 

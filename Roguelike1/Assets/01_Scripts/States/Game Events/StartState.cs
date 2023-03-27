@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Start : BaseState
+public class StartState : BaseState
 {
     public bool win;
     public GameObject Player;
@@ -15,6 +15,10 @@ public class Start : BaseState
     private Unit playerUnit;
     private Unit EnemyUnit;
 
+    private void Start()
+    {
+        
+    }
     public override void OnEnter()
     {
         Debug.Log("Entered StartState");
