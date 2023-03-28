@@ -7,6 +7,7 @@ public class Portal : MonoBehaviour
     private bool KeyPickedUp;
     private void OnTriggerEnter(Collider other)
     {
+        
         // en speler heeft de key;
         if (other.gameObject.GetComponent<Player>() && KeyPickedUp == true)
         {

@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         PlayerInput = new PlayerInputAction();
+        PlayerInput.Enable();
         PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
 
     }
