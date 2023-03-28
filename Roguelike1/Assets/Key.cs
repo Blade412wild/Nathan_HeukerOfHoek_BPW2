@@ -11,6 +11,7 @@ public class Key : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Player>())
         {
+            Debug.Log("is hit");
             KeyIsPickedUp?.Invoke();
 
             Destroy(gameObject);
