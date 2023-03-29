@@ -20,14 +20,17 @@ public class PlayerTurn : BaseState
 
     public override void OnEnter()
     {
+        BattleManager.Instance.InbattleMode = true;
+
         Debug.Log("PlayerTurn");
-        PlayerUnit.CurrentEnergy = PlayerUnit.CurrentEnergy + EnergyRefillAmount;
+        PlayerUnit.CurrentEnergy = PlayerUnit.CurrentEnergy = EnergyRefillAmount;
         playerInputAction.FreeRoam.Click.performed += ctx => { ClickedMouse(); };
     }
 
     public override void OnExit()
     {
         playerInputAction.FreeRoam.Click.performed -= ctx => { ClickedMouse(); };
+        playerInputAction.FreeRoam.Disable();
     }
 
     public override void OnUpdate()
@@ -52,5 +55,19 @@ public class PlayerTurn : BaseState
     {
         //Debug.Log("Clicked Mouse");
         MouseClicked?.Invoke();
+    }
+
+    public void Moved()
+    {
+        
+    }
+    public void SwitchToEnemy()
+    {
+        owner.SwitchState(typeof(EnemyTurn));
+
+    }
+    public void SwitchToIdel()
+    {
+        owner.SwitchState(typeof(IdleState));
     }
 }

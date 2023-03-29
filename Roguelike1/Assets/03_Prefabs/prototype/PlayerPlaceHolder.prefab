@@ -217,7 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a405c21b403b0c4c902b5159d88c83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
 --- !u!114 &697837736812728723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,11 +247,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Player
   UnitLevel: 0
-  Damage: 0
-  MaxHP: 0
-  CurrentHP: 0
-  MaxEnergy: 0
-  CurrentEnergy: 0
+  Damage: 15
+  MaxHP: 100
+  CurrentHP: 100
+  MaxEnergy: 5
+  CurrentEnergy: 5
   CurrentTurn: {fileID: 0}
 --- !u!65 &-6302515987837514234
 BoxCollider:

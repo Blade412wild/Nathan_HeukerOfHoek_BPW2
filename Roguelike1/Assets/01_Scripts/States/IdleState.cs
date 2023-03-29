@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
+    private Unit PlayerUnit;
+    private Player player;
+
     public override void OnEnter()
     {
         Debug.Log("Idele State");
+        BattleManager.Instance.InbattleMode = false;
+
     }
 
     public override void OnExit()
@@ -26,8 +31,19 @@ public class IdleState : BaseState
 
     public void PlayerInRange()
     {
-        Debug.Log("switch to playerTurn");
-        owner.SwitchState(typeof(PlayerTurn));
+        if (!BattleManager.Instance.InbattleMode)
+        {
+            owner.SwitchState(typeof(PlayerTurn));
+        }
+    }
+    public void CollectData()
+    {
+        player = FindAnyObjectByType<Player>();
+        PlayerUnit = player.GetComponent<Unit>();
+        //playerHUD = FindAnyObjectByType<BattleHUD>();
+        //playerHUD.SetHUD(PlayerUnit);
+
+        //Debug.Log("collected Data");
     }
 
 

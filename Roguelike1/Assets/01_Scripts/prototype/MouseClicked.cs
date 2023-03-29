@@ -13,6 +13,7 @@ public class MouseClicked : MonoBehaviour
     }
     public void CheckIfMouseClickIsEnemy()
     {
+        Debug.Log("clicked");
         Vector3 mousePos = Mouse.current.position.ReadValue();
         Ray ray = camera.ScreenPointToRay(mousePos);
 
@@ -23,15 +24,9 @@ public class MouseClicked : MonoBehaviour
             if (Currentenemy != null)
             {
                 Unit CurrentEnemyUnit = Currentenemy.GetComponent<Unit>();
-                Debug.Log(BattleManager.Instance);
 
-                Debug.Log("we have hit an Enemy!");
                 BattleManager.Instance.CurrentEnemy(CurrentEnemyUnit);
 
-            }
-            else
-            {
-                Debug.Log("We haven't hit an Enemy");
             }
         }
     }

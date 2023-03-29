@@ -6,6 +6,8 @@ public class EnemyTurn : BaseState
 {
     public override void OnEnter()
     {
+        BattleManager.Instance.InbattleMode = true;
+
         Debug.Log("Enemyturn");
         CollectData();
     }
@@ -24,5 +26,10 @@ public class EnemyTurn : BaseState
     private void CollectData()
     {
 
+    }
+
+    public void SwitchToPlayer()
+    {
+        owner.SwitchState(typeof(PlayerTurn));
     }
 }
