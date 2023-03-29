@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTurn : BaseState
+public class IdleState : BaseState
 {
     public override void OnEnter()
     {
-        Debug.Log("Enemyturn");
-        CollectData();
+        Debug.Log("Idele State");
     }
 
     public override void OnExit()
@@ -17,12 +16,19 @@ public class EnemyTurn : BaseState
 
     public override void OnUpdate()
     {
+
+    }
+
+    void Start()
+    {
         
     }
-   
 
-    private void CollectData()
+    public void PlayerInRange()
     {
-
+        Debug.Log("switch to playerTurn");
+        owner.SwitchState(typeof(PlayerTurn));
     }
+
+
 }

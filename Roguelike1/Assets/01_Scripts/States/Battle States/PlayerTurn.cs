@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class PlayerTurn : BaseState
@@ -8,16 +9,11 @@ public class PlayerTurn : BaseState
     private Unit PlayerUnit;
     private Player player;
     private PlayerInputAction playerInputAction;
+
+
     public override void OnEnter()
     {
-       if(player == null)
-       {
-            playerSetUP();
-            InputSetUp();
-       }
-
-
-
+        Debug.Log("PlayerTurn");
     }
 
     public override void OnExit()
@@ -27,21 +23,20 @@ public class PlayerTurn : BaseState
 
     public override void OnUpdate()
     {
-
+        if(PlayerUnit.CurrentEnergy == 0)
+        {
+            
+        }
     }
-    private void playerSetUP()
+
+    public void CollectData()
     {
-        playerHUD = FindAnyObjectByType<BattleHUD>();
+        //player data
         player = FindAnyObjectByType<Player>();
         PlayerUnit = player.GetComponent<Unit>();
-        playerHUD.SetHUD(PlayerUnit);
-    }
+        //playerHUD = FindAnyObjectByType<BattleHUD>();
+        //playerHUD.SetHUD(PlayerUnit);
 
-    private void InputSetUp()
-    {
-        playerInputAction = new PlayerInputAction();
-        playerInputAction.FreeRoam.Disable();
-        playerInputAction.battleMode.Enable();
-
+        Debug.Log("collected Data");
     }
 }

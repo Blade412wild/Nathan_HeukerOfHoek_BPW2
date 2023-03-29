@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 7273241504250955216}
   - component: {fileID: 4091287807776862686}
   - component: {fileID: 3562172557512596969}
-  - component: {fileID: 6777056646665259203}
   m_Layer: 0
   m_Name: EnemyBody
   m_TagString: Untagged
@@ -117,19 +116,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6777056646665259203
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5787488072211736803}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6161845539192900370
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +127,6 @@ GameObject:
   - component: {fileID: 4996332136170993954}
   - component: {fileID: 7148660404659589164}
   - component: {fileID: 3911889826202415824}
-  - component: {fileID: 7573745360811296696}
   m_Layer: 0
   m_Name: nose
   m_TagString: Untagged
@@ -214,19 +199,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7573745360811296696
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6161845539192900370}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9011892157876785159
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +211,7 @@ GameObject:
   - component: {fileID: 6132093179866951438}
   - component: {fileID: -450938226329132024}
   - component: {fileID: 7110012605233628976}
+  - component: {fileID: 7022779937180852430}
   m_Layer: 0
   m_Name: EnemyPlaceHolder
   m_TagString: Untagged
@@ -276,6 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 10
   RayDistance: 10
+  PlayerInRange: {fileID: 11400000, guid: 7547a9357c49cfa46a710f90e8f54db6, type: 2}
 --- !u!114 &-450938226329132024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +290,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e041a2e96b7be646bc88d98b161cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: 'BadGUy '
-  unitLevel: 2
-  damage: 5
-  maxHP: 30
-  currentHP: 30
+  UnitName: 
+  UnitLevel: 0
+  Damage: 0
+  MaxHP: 0
+  CurrentHP: 0
+  MaxEnergy: 0
+  CurrentEnergy: 0
+  CurrentTurn: {fileID: 0}
+--- !u!65 &7022779937180852430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011892157876785159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3.5102963, z: 1}
+  m_Center: {x: 0, y: 1.2551482, z: 0}

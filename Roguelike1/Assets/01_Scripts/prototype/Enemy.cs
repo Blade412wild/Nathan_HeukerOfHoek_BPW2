@@ -8,9 +8,14 @@ public class Enemy : MonoBehaviour
     public int Range;
     public int RayDistance;
 
+    [SerializeField]
+    private GameEvent PlayerInRange;
+
     private PlayerMovement playerMovement;
     private Player player;
     private bool visible;
+
+
 
 
 
@@ -47,7 +52,9 @@ public class Enemy : MonoBehaviour
         if (Vector3Int.Distance(playerCurrentLocation, enemyLocation) < Range)
         {
             Debug.Log("In Range");
-            //visible = isPlayerVisible(playerCurrentLocation);
+            PlayerInRange?.Invoke();
+
+
         }
     }
 
