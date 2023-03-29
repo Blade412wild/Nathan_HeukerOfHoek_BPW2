@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ public class CameraController : MonoBehaviour
     {
         player1 = FindAnyObjectByType<Player>();
         Debug.Log(player1.gameObject.transform.position);
-        //StartCoroutine(CameraStartDelay());
     }
 
     // Update is called once per frame
@@ -29,13 +29,6 @@ public class CameraController : MonoBehaviour
         }
 
     }
-    //IEnumerator CameraStartDelay()
-    //{
-    //    yield return new WaitForSeconds(0.1f);
-    //    player1 = FindAnyObjectByType<Player>();
-    //    Debug.Log(player1.gameObject.transform.position);
-    //    transform.position = player1.transform.position + Offset;
-    //}
 
 
 
