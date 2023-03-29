@@ -90,5 +90,16 @@ public class PlayerMovement : MonoBehaviour
         OnMove?.Invoke();
 
    }
-    
+
+    public void SwitchToPlayerTurn()
+    {
+        PlayerInput.Enable();
+
+    }
+
+    public void SwitchToEnemyTurn()
+    {
+        PlayerInput.Disable();
+
+    }
 }
