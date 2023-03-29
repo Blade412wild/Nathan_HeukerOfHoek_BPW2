@@ -284,6 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b129a314d0a451a4cb18f1f29680d010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnergyRefillAmount: 10
+  MouseClicked: {fileID: 11400000, guid: 606b9f3be775750499459846e510a109, type: 2}
 --- !u!114 &176172892
 MonoBehaviour:
   m_ObjectHideFlags: 0
