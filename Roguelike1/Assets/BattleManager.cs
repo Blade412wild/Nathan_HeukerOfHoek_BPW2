@@ -4,16 +4,35 @@ using UnityEngine;
 
 public class BattleManager : MonoBehaviour
 {
-    private FSM fsm;
-    // Start is called before the first frame update
-    void Start()
+    public int DamageValue;
+
+    [SerializeField]
+    int currentCombo;
+
+    public static BattleManager Instance = null;
+
+
+    private void Awake()
     {
-        fsm = new FSM(typeof(IdleState), GetComponents<BaseState>());
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CurrentEnemy(Unit Enemy)
     {
-        fsm.OnUpdate();
+        bool isDead = Enemy.TakeDamage(DamageValue);
+        Debug.Log(Enemy.CurrentHP);
+        if (isDead)
+        {
+            Destroy(Enemy.gameObject);
+        }
     }
+
+
 }

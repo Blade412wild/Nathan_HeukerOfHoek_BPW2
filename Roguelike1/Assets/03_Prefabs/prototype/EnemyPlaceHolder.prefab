@@ -290,11 +290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e041a2e96b7be646bc88d98b161cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitName: 
+  UnitName: Enemy
   UnitLevel: 0
-  Damage: 0
-  MaxHP: 0
-  CurrentHP: 0
+  Damage: 10
+  MaxHP: 15
+  CurrentHP: 15
   MaxEnergy: 0
   CurrentEnergy: 0
   CurrentTurn: {fileID: 0}

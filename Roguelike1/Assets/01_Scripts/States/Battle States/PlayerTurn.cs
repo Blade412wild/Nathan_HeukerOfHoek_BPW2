@@ -45,12 +45,12 @@ public class PlayerTurn : BaseState
         //playerHUD = FindAnyObjectByType<BattleHUD>();
         //playerHUD.SetHUD(PlayerUnit);
 
-        Debug.Log("collected Data");
+        //Debug.Log("collected Data");
     }
 
     public void ClickedMouse()
     {
-        Debug.Log("Clicked Mouse");
+        //Debug.Log("Clicked Mouse");
         MouseClicked?.Invoke();
     }
 }

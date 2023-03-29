@@ -30,4 +30,18 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public bool LoseEnergy(int Energy)
+    {
+        CurrentEnergy -= Energy;
+
+        if(CurrentEnergy <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
