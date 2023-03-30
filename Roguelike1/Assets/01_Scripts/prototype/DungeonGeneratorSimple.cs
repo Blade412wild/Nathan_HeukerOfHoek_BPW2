@@ -29,6 +29,7 @@ namespace SimpleDungeon
         public GameObject wallPrefab;
         public GameObject Portal;
         public GameObject KeyPrefab;
+        public Grid Grid;
 
         // Location Variables
         public Vector3Int PortalSpawnLocation;
@@ -46,6 +47,7 @@ namespace SimpleDungeon
         void Start()
         {
             Generate();
+            Grid.CreateGrid();
         }
         /// <summary>
         /// Generates the dungeon

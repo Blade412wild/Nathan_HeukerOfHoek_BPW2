@@ -212,6 +212,8 @@ GameObject:
   - component: {fileID: -450938226329132024}
   - component: {fileID: 7110012605233628976}
   - component: {fileID: 7022779937180852430}
+  - component: {fileID: 2022247402663884535}
+  - component: {fileID: -146629362233526254}
   m_Layer: 0
   m_Name: EnemyPlaceHolder
   m_TagString: Untagged
@@ -311,3 +313,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.5102963, z: 1}
   m_Center: {x: 0, y: 1.2551482, z: 0}
+--- !u!114 &2022247402663884535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011892157876785159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557b1b012b0136244b2fcc3d37020a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-146629362233526254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011892157876785159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 154db584c4ec70f4489616e146b86fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: df033a1513058b14d811ec255f0bd81a, type: 2}
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2022247402663884535}
+        m_TargetAssemblyTypeName: PathFinding, Assembly-CSharp
+        m_MethodName: SearchPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

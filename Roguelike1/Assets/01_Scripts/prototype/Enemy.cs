@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int Range;
+    public int HitRange;
     public int RayDistance;
 
     [SerializeField]
@@ -14,11 +15,10 @@ public class Enemy : MonoBehaviour
     private PlayerMovement playerMovement;
     private Player player;
     private bool visible;
-
-
-
-
-
+    private PathFinding pathFinding;
+    private bool InRange = false;
+    private Vector3Int playerCurrentLocation;
+    private Vector3Int enemyLocation;
 
 
 
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         player = FindAnyObjectByType<Player>();
         playerMovement = player.GetComponent<PlayerMovement>();
+        pathFinding = GetComponent<PathFinding>();
     }
 
 
@@ -34,11 +35,11 @@ public class Enemy : MonoBehaviour
     {
         Vector3Int playerCurrentLocation = playerMovement.currentLocation;
         PlayerDistance(playerCurrentLocation);
-
-        
-
     }
-
+    private void Update()
+    {
+        
+    }
 
     //Wanneer het de turn is van de Enemy
     private void PathCalculation()
@@ -53,38 +54,38 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("In Range");
             PlayerInRange?.Invoke();
+            pathFinding.FindPathPlayer();
+            InRange = true;
 
 
         }
     }
 
-    /*
-    private bool isPlayerVisible(Vector3Int playerCurrentLocation)
+    public void EnemyTurn()
     {
-        Vector3 EnemeyPrefabPosition = transform.position;
-        EnemeyPrefabPosition.y = 2f;
-        playerCurrentLocation.y = 2;
-
-        if (Physics.Raycast(transform.position, (playerCurrentLocation - transform.position).normalized, out RaycastHit hitinfo, RayDistance))
+        if (InRange)
         {
-            Debug.DrawRay(transform.position, (playerCurrentLocation - transform.position).normalized * hitinfo.distance, Color.blue);
 
-            Debug.Log(hitinfo.transform.position);
-
-            if (hitinfo.transform.name != "Wall" || hitinfo.transform.name != "wall")
+            if(Vector3Int.Distance(playerCurrentLocation, enemyLocation) < HitRange)
             {
-                Debug.Log("Player is Visble");
+                Attack();
             }
-
             else
             {
-                Debug.Log("Player isn't visble");
+                Move();
             }
         }
-            return visible;
-    }
-    */
 
-    
+    }
+
+    private void Move()
+    {
+
+    }
+
+    private void Attack()
+    {
+
+    }
     
 }

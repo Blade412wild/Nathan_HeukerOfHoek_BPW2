@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PathFinding : MonoBehaviour
 {
-    public Transform seeker, target;
+    private Transform seeker;
+    private Transform target;
+    private Player player;
+
     Grid grid;
 
     private void Awake()
     {
-        grid = GetComponent<Grid>();
+        seeker = GetComponent<Transform>();
     }
 
-    private void Update()
+    public void SearchPlayer()
+    {
+        player = FindAnyObjectByType<Player>();
+        target = player.GetComponent<Transform>();
+        grid = FindAnyObjectByType<Grid>();
+        Debug.Log(grid);
+       // grid = GetComponent<Grid>();
+    }
+
+    public void FindPathPlayer()
     {
         FindPath(seeker.position, target.position);
     }

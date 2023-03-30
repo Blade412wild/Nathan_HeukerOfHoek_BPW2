@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Grid : MonoBehaviour
 {
-    public Transform player;
     public LayerMask Unwalkable;
     public Vector2 GridWorlSize;
     public float NodeRadius;
@@ -12,16 +12,19 @@ public class Grid : MonoBehaviour
 
     private float nodeDiameter;
     private int gridSizeX, gridSizeY;
+    private  Transform player;
+    private Player playerScript;
     private void Start()
     {
         nodeDiameter = NodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(GridWorlSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(GridWorlSize.y / nodeDiameter);
-        CreateGrid();
 
     }
 
-    private void CreateGrid()
+    
+
+    public void CreateGrid()
     {
         grid = new Node[gridSizeX, gridSizeY];
         Vector3 worldBottomLeft = transform.position - Vector3.right * GridWorlSize.x / 2 - Vector3.forward * GridWorlSize.y / 2;
@@ -100,5 +103,10 @@ public class Grid : MonoBehaviour
                 Gizmos.DrawCube(m.WorldPosition, Vector3.one * (nodeDiameter - 0.1f));
             }
         }
+    }
+    public void SearchPlayer()
+    {
+        playerScript = FindAnyObjectByType<Player>();
+        player = playerScript.GetComponent<Transform>();
     }
 }
