@@ -39,7 +39,7 @@ public class BattleManager : MonoBehaviour
 
     public void CurrentEnemy(Unit Enemy)
     {
-        DoDamage(Enemy);
+        PlayerDoDamage(Enemy);
 
     }
 
@@ -50,21 +50,32 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    private void DoDamage(Unit Enemy)
+    public void PlayerDoDamage(Unit target)
     {
-        int DamageValue = ComboCalculation();
-        bool isDead = Enemy.TakeDamage(DamageValue);
+        int DamageValue = ComboCalculation(target);
+        bool isDead = target.TakeDamage(DamageValue);
         if (isDead)
         {
-            Destroy(Enemy.gameObject);
+            Destroy(target.gameObject);
         }
-        DecreaseEnergy(2);
+        DecreaseEnergy(playerUnit, 2);
+        UpdateUI();
+    }
+    public void EnemyDoDamage(Unit Attacker)
+    {
+        int DamageValue = Attacker.Damage;
+        bool isDead = playerUnit.TakeDamage(DamageValue);
+        if (isDead)
+        {
+            Destroy(playerUnit.gameObject);
+        }
+        DecreaseEnergy(Attacker, 3);
         UpdateUI();
     }
 
-    public void DecreaseEnergy(int Energy)
+    public void DecreaseEnergy(Unit Attacker, int Energy)
     {
-        bool isOutOfEnergy = playerUnit.LoseEnergy(Energy);
+        bool isOutOfEnergy = Attacker.LoseEnergy(Energy);
 
         if(isOutOfEnergy)
         {
@@ -75,11 +86,11 @@ public class BattleManager : MonoBehaviour
         UpdateUI();
     }
 
-    private int ComboCalculation()
+    private int ComboCalculation(Unit attacker)
     {
         currentCombo++;
         damagemultiplier = 1.0f;
-        int playerNormalDamage = playerUnit.Damage;
+        int attackerDamage = attacker.Damage;
 
         if (currentCombo < 3)
         {
@@ -98,7 +109,7 @@ public class BattleManager : MonoBehaviour
             damagemultiplier = 2.0f;
         }
 
-        int newdamageValue = Mathf.RoundToInt(playerNormalDamage * damagemultiplier);
+        int newdamageValue = Mathf.RoundToInt(attackerDamage * damagemultiplier);
 
         return newdamageValue;
 
@@ -113,5 +124,9 @@ public class BattleManager : MonoBehaviour
         //playerUI.CurrentTurnText.SetText()
     }
 
+    private void EnemyTurnHandler()
+    {
+
+    }
 
 }

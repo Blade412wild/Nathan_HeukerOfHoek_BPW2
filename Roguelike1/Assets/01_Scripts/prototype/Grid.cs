@@ -20,6 +20,7 @@ public class Grid : MonoBehaviour
         gridSizeX = Mathf.RoundToInt(GridWorlSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(GridWorlSize.y / nodeDiameter);
 
+
     }
 
     
@@ -67,6 +68,7 @@ public class Grid : MonoBehaviour
 
     public Node NodeFromWorldPoint(Vector3 worldPosition)
     {
+        Debug.Log(worldPosition);
         float percentX = (worldPosition.x + GridWorlSize.x / 2) / GridWorlSize.x;
         float percentY = (worldPosition.z + GridWorlSize.y / 2) / GridWorlSize.x;
         percentX = Mathf.Clamp01(percentX);
@@ -74,6 +76,7 @@ public class Grid : MonoBehaviour
 
         int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
         int y = Mathf.RoundToInt((gridSizeY - 1) * percentY);
+
         return grid[x, y];
     }
 
@@ -85,7 +88,9 @@ public class Grid : MonoBehaviour
 
         if (grid != null)
         {
+
             Node playerNode = NodeFromWorldPoint(player.position);
+            Debug.Log(playerNode);
             foreach (Node m in grid)
             {
                 Gizmos.color = (m.Walkable) ? Color.white : Color.blue;
@@ -98,6 +103,7 @@ public class Grid : MonoBehaviour
                     if (path.Contains(m))
                     {
                         Gizmos.color = Color.black;
+                        //Debug.Log(m.WorldPosition);
                     }
                 }
                 Gizmos.DrawCube(m.WorldPosition, Vector3.one * (nodeDiameter - 0.1f));

@@ -25,7 +25,7 @@ public class MouseClicked : MonoBehaviour
             {
                 Unit CurrentEnemyUnit = Currentenemy.GetComponent<Unit>();
 
-                BattleManager.Instance.CurrentEnemy(CurrentEnemyUnit);
+                BattleManager.Instance.PlayerDoDamage(CurrentEnemyUnit);
 
             }
         }

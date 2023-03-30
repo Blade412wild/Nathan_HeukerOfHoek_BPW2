@@ -14,7 +14,6 @@ public class CameraController : MonoBehaviour
     public void SearchPlayer()
     {
         player1 = FindAnyObjectByType<Player>();
-        Debug.Log(player1.gameObject.transform.position);
     }
 
     // Update is called once per frame

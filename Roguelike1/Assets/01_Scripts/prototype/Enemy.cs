@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     private bool InRange = false;
     private Vector3Int playerCurrentLocation;
     private Vector3Int enemyLocation;
+    private Unit EnemyUnit;
+    private PathCalculator pathCalculator;
 
 
 
@@ -27,24 +29,29 @@ public class Enemy : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         playerMovement = player.GetComponent<PlayerMovement>();
         pathFinding = GetComponent<PathFinding>();
+        pathCalculator = GetComponent<PathCalculator>();
+
     }
 
 
     //Checked of de Speler in de Buurt is van de Enemy
     public void CheckIfPlayerIsInRange()
     {
-        Vector3Int playerCurrentLocation = playerMovement.currentLocation;
+        playerCurrentLocation = playerMovement.currentLocation;
         PlayerDistance(playerCurrentLocation);
+        EnemyUnit = GetComponent<Unit>();
     }
     private void Update()
     {
         
     }
 
-    //Wanneer het de turn is van de Enemy
-    private void PathCalculation()
+    private Vector3Int PathCalculation()
     {
+        Vector3Int EnemyLocation = Vector3Int.RoundToInt(transform.position);
+        Vector3Int nexStep = pathCalculator.PathCalculation(playerCurrentLocation, EnemyLocation);
 
+        return nexStep;
     }
 
     private void PlayerDistance(Vector3Int playerCurrentLocation)
@@ -56,8 +63,6 @@ public class Enemy : MonoBehaviour
             PlayerInRange?.Invoke();
             pathFinding.FindPathPlayer();
             InRange = true;
-
-
         }
     }
 
@@ -65,27 +70,31 @@ public class Enemy : MonoBehaviour
     {
         if (InRange)
         {
+            if(EnemyUnit.CurrentEnergy > 0)
+            {
+                if (Vector3Int.Distance(playerCurrentLocation, enemyLocation) < HitRange)
+                {
+                    Attack();
+                }
+                else
+                {
+                    Vector3Int nextStep = PathCalculation();
+                    Move(nextStep);
+                }
+            }
 
-            if(Vector3Int.Distance(playerCurrentLocation, enemyLocation) < HitRange)
-            {
-                Attack();
-            }
-            else
-            {
-                Move();
-            }
         }
 
     }
 
-    private void Move()
+    private void Move(Vector3Int nextStep)
     {
-
+        
     }
 
     private void Attack()
     {
-
+        BattleManager.Instance.EnemyDoDamage(EnemyUnit);
     }
     
 }

@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
 public class PathFinding : MonoBehaviour
 {
     private Transform seeker;
@@ -24,7 +20,7 @@ public class PathFinding : MonoBehaviour
         target = player.GetComponent<Transform>();
         grid = FindAnyObjectByType<Grid>();
         Debug.Log(grid);
-       // grid = GetComponent<Grid>();
+        grid = GetComponent<Grid>();
     }
 
     public void FindPathPlayer()
