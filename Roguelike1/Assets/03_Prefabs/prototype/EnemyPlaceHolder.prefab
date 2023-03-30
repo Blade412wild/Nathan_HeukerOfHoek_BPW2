@@ -251,6 +251,8 @@ MonoBehaviour:
   Range: 10
   HitRange: 2
   RayDistance: 10
+  RoomIndex: 4
+  IsActive: 0
   PlayerInRange: {fileID: 11400000, guid: 7547a9357c49cfa46a710f90e8f54db6, type: 2}
 --- !u!114 &-450938226329132024
 MonoBehaviour:

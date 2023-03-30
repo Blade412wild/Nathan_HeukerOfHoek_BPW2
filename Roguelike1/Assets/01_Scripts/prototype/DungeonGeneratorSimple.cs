@@ -47,7 +47,8 @@ namespace SimpleDungeon
         void Start()
         {
             Generate();
-            Grid.CreateGrid();
+
+            //Grid.CreateGrid();
         }
         /// <summary>
         /// Generates the dungeon
@@ -188,7 +189,8 @@ roomList.Count];
 
             for (int i = 0; i < EnemyCount; i++)
             {
-                int RandomRoomIndex = Random.Range(1, numRooms);
+                int RandomRoomIndex = Random.Range(1, roomList.Count);
+                //int RandomRoomIndex = 1;
                 Room SpawnRoom = roomList[RandomRoomIndex];
                 Vector3Int EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
 
@@ -198,12 +200,18 @@ roomList.Count];
                     EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
                 }
 
-            
+
                 Enemies.Add(EnemySpawnPosition, Enemy);
 
-                Instantiate(Enemy, EnemySpawnPosition, Quaternion.identity);
+                var EnemyClone = Instantiate(Enemy, EnemySpawnPosition, Quaternion.identity);
+
+                Enemy EnemyScript = EnemyClone.GetComponent<Enemy>();
+                EnemyScript.RoomIndex = RandomRoomIndex;
+                BattleManager.Instance.NormalEnemyList.Add(EnemyScript);
             }
         }
+
+
 
         public void SpawnDungeon()
         {

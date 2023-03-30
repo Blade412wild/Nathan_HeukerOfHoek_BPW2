@@ -8,6 +8,11 @@ public class BattleManager : MonoBehaviour
 {
     public bool InbattleMode = false;
 
+    public List<Enemy> NormalEnemyList = new List<Enemy>();
+    public List<EnemyStrong> StrongEnemyList = new List<EnemyStrong>();
+    public List<Enemy> currentEnemiesActvive;
+    public List<EnemyStrong> currentStrongEnemiesActvive;
+
     [SerializeField] private int currentCombo;
     [SerializeField] private PlayerUI playerUI;
 
@@ -80,7 +85,10 @@ public class BattleManager : MonoBehaviour
         if(isOutOfEnergy)
         {
             Debug.Log("Is out of energy");
-            SwitchToEnemy?.Invoke();
+            if(Attacker == playerUnit)
+            {
+                SwitchToEnemy.Invoke();
+            }
         }
 
         UpdateUI();
