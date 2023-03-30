@@ -9,12 +9,13 @@ public class TestMovement : MonoBehaviour
     public Transform Enemy;
     public PathCalculator pathCalculator;
     public int HitRange = 2;
+    private int InRange = 7;
 
     private PlayerInputAction playerInputAction;
 
     private Vector3Int EnemyCurrentLocation;
     private Vector3Int playerCurrentLocation;
-    private bool InRange;
+    //private bool InRange;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class TestMovement : MonoBehaviour
     //{
     //    EnemyCurrentLocation = Vector3Int.RoundToInt(Enemy.position);
     //    Vector3Int playerCurrentLocation = Vector3Int.RoundToInt(Player.position);
-        
+
     //    Vector3Int nextStep = pathCalculator.PathCalculation(playerCurrentLocation, EnemyCurrentLocation);
     //    Move(nextStep);
     //}
@@ -36,17 +37,22 @@ public class TestMovement : MonoBehaviour
     public void OnMouseClick()
     {
 
-            
-            
-                if (Vector3Int.Distance(playerCurrentLocation, EnemyCurrentLocation) < HitRange)
-                {
-                    Attack();
-                }
-                else
-                {
-                    Vector3Int nextStep = PathCalculation();
-                    Move(nextStep);
-                }
+
+        playerCurrentLocation = Vector3Int.RoundToInt(Player.position);
+        EnemyCurrentLocation = Vector3Int.RoundToInt(Enemy.position);
+        if (Vector3Int.Distance(playerCurrentLocation, EnemyCurrentLocation) < InRange)
+        {
+            if (Vector3Int.Distance(playerCurrentLocation, EnemyCurrentLocation) < HitRange)
+            {
+                Attack();
+            }
+            else
+            {
+                Vector3Int nextStep = PathCalculation();
+                Move(nextStep);
+            }
+        }
+
     }
 
 
