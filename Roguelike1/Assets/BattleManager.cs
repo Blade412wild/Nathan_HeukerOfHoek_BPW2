@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
     public List<EnemyStrong> StrongEnemyList = new List<EnemyStrong>();
     public List<Enemy> currentEnemiesActvive;
     public List<EnemyStrong> currentStrongEnemiesActvive;
+    public int CurrentBattleRoom;
 
     [SerializeField] private int currentCombo;
     [SerializeField] private PlayerUI playerUI;
@@ -40,6 +41,16 @@ public class BattleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void StartEnemyTurn()
+    {
+        ActivateEnemiesInRoom();
+
+        for(int i = 0; i < currentEnemiesActvive.Count; i++)
+        {
+            currentEnemiesActvive[i].EnemyTurn();
+        }
+        SwitchToPlayer.Invoke();
     }
 
     public void CurrentEnemy(Unit Enemy)
@@ -132,9 +143,17 @@ public class BattleManager : MonoBehaviour
         //playerUI.CurrentTurnText.SetText()
     }
 
-    private void EnemyTurnHandler()
+
+
+    private void ActivateEnemiesInRoom()
     {
-
+        Debug.Log("ActivateEnemiesinRoom");
+        for (int i = 0; i < BattleManager.Instance.NormalEnemyList.Count; i++)
+        {
+            if (NormalEnemyList[i].RoomIndex == CurrentBattleRoom)
+            {
+                currentEnemiesActvive.Add(NormalEnemyList[i]);
+            }
+        }
     }
-
 }

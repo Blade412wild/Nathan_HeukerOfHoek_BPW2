@@ -61,32 +61,27 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("In Range");
             PlayerInRange?.Invoke();
-            InRange = true;
-            StartEnemyTurn();
+
+            BattleManager.Instance.CurrentBattleRoom = RoomIndex;
         }
     }
 
     public void EnemyTurn()
     {
+        Debug.Log("Started Enemy turn in enemy script;");
         enemyCurrentLocation = Vector3Int.RoundToInt(transform.position);
 
-        if (InRange)
+        while(EnemyUnit.CurrentEnergy > 0)
         {
-            ActivateEnemiesInRoom();
-
-            if(EnemyUnit.CurrentEnergy > 0)
+            if (Vector3Int.Distance(playerCurrentLocation, enemyCurrentLocation) < HitRange)
             {
-                if (Vector3Int.Distance(playerCurrentLocation, enemyCurrentLocation) < HitRange)
-                {
-                    Attack();
-                }
-                else
-                {
-                    Vector3Int nextStep = PathCalculation();
-                    Move(nextStep);
-                }
+                Attack();
             }
-
+            else
+            {
+                Vector3Int nextStep = PathCalculation();
+                Move(nextStep);
+            }
         }
 
     }
@@ -102,22 +97,22 @@ public class Enemy : MonoBehaviour
     {
         BattleManager.Instance.EnemyDoDamage(EnemyUnit);
     }
-    public void ActivateEnemiesInRoom()
-    {
-        Debug.Log("ActivateEnemiesinRoom");
-        for (int i = 0; i < BattleManager.Instance.NormalEnemyList.Count; i++)
-        {
-            if (BattleManager.Instance.NormalEnemyList[i].RoomIndex == RoomIndex)
-            {
-                BattleManager.Instance.currentEnemiesActvive.Add(BattleManager.Instance.NormalEnemyList[i]);
-            }
-        }
-    }
+    //public void ActivateEnemiesInRoom()
+    //{
+    //    Debug.Log("ActivateEnemiesinRoom");
+    //    for (int i = 0; i < BattleManager.Instance.NormalEnemyList.Count; i++)
+    //    {
+    //        if (BattleManager.Instance.NormalEnemyList[i].RoomIndex == RoomIndex)
+    //        {
+    //            BattleManager.Instance.currentEnemiesActvive.Add(BattleManager.Instance.NormalEnemyList[i]);
+    //        }
+    //    }
+    //}
 
-    private void StartEnemyTurn()
-    {
-        ActivateEnemiesInRoom();
-    }
+    //private void StartEnemyTurn()
+    //{
+    //    ActivateEnemiesInRoom();
+    //}
 
 
 }

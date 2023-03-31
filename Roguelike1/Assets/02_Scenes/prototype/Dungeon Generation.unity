@@ -451,6 +451,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InbattleMode: 0
+  NormalEnemyList: []
+  StrongEnemyList: []
+  currentEnemiesActvive: []
+  currentStrongEnemiesActvive: []
+  CurrentBattleRoom: 0
   currentCombo: 0
   playerUI: {fileID: 176172898}
   SwitchToPlayer: {fileID: 11400000, guid: 266fce03f75c03d42a763a6afd8e7c8a, type: 2}
@@ -2889,7 +2894,7 @@ PrefabInstance:
     - target: {fileID: 5541075443400567399, guid: d6ed583941eb38140873b6925e8382e8,
         type: 3}
       propertyPath: MinEnemies
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6ed583941eb38140873b6925e8382e8, type: 3}

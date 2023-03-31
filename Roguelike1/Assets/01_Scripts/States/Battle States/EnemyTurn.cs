@@ -10,6 +10,7 @@ public class EnemyTurn : BaseState
 
         Debug.Log("Enemyturn");
         CollectData();
+        BattleManager.Instance.StartEnemyTurn();
     }
 
     public override void OnExit()

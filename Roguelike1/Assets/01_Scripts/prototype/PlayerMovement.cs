@@ -93,13 +93,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void SwitchToPlayerTurn()
     {
+        Debug.Log("turned playermovemend");
         PlayerInput.Enable();
-
+        PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
     }
 
     public void SwitchToEnemyTurn()
     {
         PlayerInput.Disable();
-
     }
 }
