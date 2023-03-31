@@ -23,6 +23,7 @@ public class PlayerTurn : BaseState
         BattleManager.Instance.InbattleMode = true;
 
         Debug.Log("PlayerTurn");
+        playerInputAction.FreeRoam.Enable();
         PlayerUnit.CurrentEnergy = PlayerUnit.CurrentEnergy = EnergyRefillAmount;
         playerInputAction.FreeRoam.Click.performed += ctx => { ClickedMouse(); };
     }

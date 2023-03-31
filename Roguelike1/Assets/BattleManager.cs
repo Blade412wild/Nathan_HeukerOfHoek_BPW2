@@ -48,6 +48,7 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < currentEnemiesActvive.Count; i++)
         {
+            Debug.Log(currentEnemiesActvive.Count);
             currentEnemiesActvive[i].EnemyTurn();
         }
         SwitchToPlayer.Invoke();
@@ -68,10 +69,12 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerDoDamage(Unit target)
     {
+        Enemy EnemyScript = target.GetComponent<Enemy>();
         int DamageValue = ComboCalculation(target);
         bool isDead = target.TakeDamage(DamageValue);
         if (isDead)
         {
+            currentEnemiesActvive.Remove(EnemyScript);
             Destroy(target.gameObject);
         }
         DecreaseEnergy(playerUnit, 2);
@@ -147,12 +150,15 @@ public class BattleManager : MonoBehaviour
 
     private void ActivateEnemiesInRoom()
     {
-        Debug.Log("ActivateEnemiesinRoom");
-        for (int i = 0; i < BattleManager.Instance.NormalEnemyList.Count; i++)
+        if(currentEnemiesActvive.Count == 0)
         {
-            if (NormalEnemyList[i].RoomIndex == CurrentBattleRoom)
+            Debug.Log("ActivateEnemiesinRoom");
+            for (int i = 0; i < NormalEnemyList.Count; i++)
             {
-                currentEnemiesActvive.Add(NormalEnemyList[i]);
+                if (NormalEnemyList[i].RoomIndex == CurrentBattleRoom)
+                {
+                    currentEnemiesActvive.Add(NormalEnemyList[i]);
+                }
             }
         }
     }

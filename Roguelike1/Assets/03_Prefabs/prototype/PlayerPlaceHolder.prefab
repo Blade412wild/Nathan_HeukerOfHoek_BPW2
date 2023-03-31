@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Player
   UnitLevel: 0
-  Damage: 15
+  Damage: 25
   MaxHP: 100
   CurrentHP: 100
   MaxEnergy: 5

@@ -71,7 +71,8 @@ public class Enemy : MonoBehaviour
         Debug.Log("Started Enemy turn in enemy script;");
         enemyCurrentLocation = Vector3Int.RoundToInt(transform.position);
 
-        while(EnemyUnit.CurrentEnergy > 0)
+        EnemyUnit.CurrentEnergy = 4;
+        while (EnemyUnit.CurrentEnergy > 0)
         {
             if (Vector3Int.Distance(playerCurrentLocation, enemyCurrentLocation) < HitRange)
             {
@@ -91,6 +92,7 @@ public class Enemy : MonoBehaviour
         Vector3Int EnemyTargetPosition = new Vector3Int(nextStep.x, nextStep.y, nextStep.z);
         transform.position = EnemyTargetPosition;
         enemyCurrentLocation = EnemyTargetPosition;
+        BattleManager.Instance.DecreaseEnergy(EnemyUnit, 2);
     }
 
     private void Attack()

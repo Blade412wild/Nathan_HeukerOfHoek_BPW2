@@ -296,8 +296,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitName: Enemy
   UnitLevel: 0
-  Damage: 15
-  MaxHP: 80
+  Damage: 5
+  MaxHP: 100
   CurrentHP: 100
   MaxEnergy: 4
   CurrentEnergy: 4

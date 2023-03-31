@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         PlayerInput = new PlayerInputAction();
-        PlayerInput.Enable();
+        PlayerInput.FreeRoam.Enable();
         PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
 
     }
@@ -93,13 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void SwitchToPlayerTurn()
     {
-        Debug.Log("turned playermovemend");
-        PlayerInput.Enable();
         PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
     }
 
     public void SwitchToEnemyTurn()
     {
-        PlayerInput.Disable();
+        PlayerInput.FreeRoam.Movement.performed -= ctx => { Movement(); };
     }
 }
