@@ -19,14 +19,17 @@ public class MouseClicked : MonoBehaviour
 
         if(Physics.Raycast(ray, out RaycastHit hitInfo))
         {
-            Enemy Currentenemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
-            
-            if (Currentenemy != null)
+            if (hitInfo.collider.gameObject.GetComponent<Enemy>())
             {
+                Enemy Currentenemy = hitInfo.collider.gameObject.GetComponent<Enemy>();
                 Unit CurrentEnemyUnit = Currentenemy.GetComponent<Unit>();
-
                 BattleManager.Instance.PlayerDoDamage(CurrentEnemyUnit);
-
+            }
+            else if(hitInfo.collider.gameObject.GetComponent<EnemyStrong>())
+            {
+                EnemyStrong Currentenemy = hitInfo.collider.gameObject.GetComponent<EnemyStrong>();
+                Unit CurrentEnemyUnit = Currentenemy.GetComponent<Unit>();
+                BattleManager.Instance.PlayerDoDamage(CurrentEnemyUnit);
             }
         }
     }

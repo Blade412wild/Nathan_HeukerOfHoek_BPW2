@@ -67,7 +67,6 @@ public class Enemy : MonoBehaviour
 
     public void EnemyTurn()
     {
-        Debug.Log("Started Enemy turn in enemy script;");
         enemyCurrentLocation = Vector3Int.RoundToInt(transform.position);
 
         EnemyUnit.CurrentEnergy = 4;

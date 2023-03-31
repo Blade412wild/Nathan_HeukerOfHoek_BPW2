@@ -13,6 +13,7 @@ namespace SimpleDungeon
         [Header("EnemyStats")]
         public int MaxEnemies;
         public int MinEnemies;
+        public int NumStrongEnemies;
 
 
         [Header("Dungeon Generation")]
@@ -24,18 +25,18 @@ namespace SimpleDungeon
 
         [Header("References")]
         public GameObject Enemy;
+        public GameObject StrongEnemy;
         public GameObject Player;
         public GameObject floorPrefab;
         public GameObject wallPrefab;
         public GameObject Portal;
         public GameObject KeyPrefab;
-        public Grid Grid;
 
         // Location Variables
         public Vector3Int PortalSpawnLocation;
         public Vector3Int KeySpawnLocation;
         private Vector3Int PlayerSpawnPosition;
-
+        private Vector3Int enemySpawnPosition;
 
         // Dictionaries & Lists
         public Dictionary<Vector3Int, TileType> dungeon = new Dictionary<Vector3Int, TileType>();
@@ -73,6 +74,7 @@ namespace SimpleDungeon
             SpawnKey();
             SpawnPlayer();
             SpawnEnemy();
+            SpawnStrongEnemy();
         }
         [ContextMenu("Clear Dungeon")]
         public void ClearDungeon()
@@ -190,7 +192,6 @@ roomList.Count];
             for (int i = 0; i < EnemyCount; i++)
             {
                 int RandomRoomIndex = Random.Range(1, roomList.Count);
-                //int RandomRoomIndex = 1;
                 Room SpawnRoom = roomList[RandomRoomIndex];
                 Vector3Int EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
 
@@ -200,14 +201,34 @@ roomList.Count];
                     EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
                 }
 
-
-                Enemies.Add(EnemySpawnPosition, Enemy);
-
                 var EnemyClone = Instantiate(Enemy, EnemySpawnPosition, Quaternion.identity);
 
+                EnemySpawnPosition = enemySpawnPosition;
                 Enemy EnemyScript = EnemyClone.GetComponent<Enemy>();
                 EnemyScript.RoomIndex = RandomRoomIndex;
                 BattleManager.Instance.NormalEnemyList.Add(EnemyScript);
+            }
+        }
+        private void SpawnStrongEnemy()
+        {
+      
+            for (int i = 0; i < NumStrongEnemies; i++)
+            {
+                int RandomRoomIndex = Random.Range(1, roomList.Count);
+                Room SpawnRoom = roomList[RandomRoomIndex];
+                Vector3Int EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
+
+                // hier checkt die of de Enemy niet op een van de andere objecteSpawnt
+                while (EnemySpawnPosition == PortalSpawnLocation || EnemySpawnPosition == KeySpawnLocation || EnemySpawnPosition == PlayerSpawnPosition || EnemySpawnPosition == enemySpawnPosition)
+                {
+                    EnemySpawnPosition = SpawnRoom.GetRandomPositionInRoom();
+                }
+
+                var EnemyClone = Instantiate(StrongEnemy, EnemySpawnPosition, Quaternion.identity);
+
+                EnemyStrong EnemyScript = EnemyClone.GetComponent<EnemyStrong>();
+                EnemyScript.RoomIndex = RandomRoomIndex;
+                BattleManager.Instance.StrongEnemyList.Add(EnemyScript);
             }
         }
 

@@ -27,6 +27,8 @@ public class BattleManager : MonoBehaviour
     private float damagemultiplier;
     private Player player;
     private Unit playerUnit;
+    private bool CurrentEnemiesDead;
+    private bool CurrentStrongEnemiesDead;
 
 
     // instance 
@@ -47,30 +49,32 @@ public class BattleManager : MonoBehaviour
     public void StartEnemyTurn()
     {
         ActivateEnemiesInRoom();
+        ActivateStrongEnemiesInRoom();
 
-        for(int i = 0; i < currentEnemiesActvive.Count; i++)
+        if (!CurrentEnemiesDead)
         {
-            currentEnemiesActvive[i].EnemyTurn();
-            Debug.Log(currentEnemiesActvive.Count);
+            for (int i = 0; i < currentEnemiesActvive.Count; i++)
+            {
+                currentEnemiesActvive[i].EnemyTurn();
+            }
+        }
+
+        if(!CurrentStrongEnemiesDead)
+        {
+            for (int i = 0; i < currentStrongEnemiesActvive.Count; i++)
+            {
+                currentStrongEnemiesActvive[i].EnemyTurn();
+            }
         }
 
         SwitchToPlayer?.Invoke();
 
-        //if (currentEnemiesActvive.Count <= 1)
-        //{
-        //    SwitchToIdle?.Invoke();
-        //}
-        //else
-        //{
-        //    SwitchToPlayer?.Invoke();
-        //}
 
     }
 
     public void CurrentEnemy(Unit Enemy)
     {
         PlayerDoDamage(Enemy);
-
     }
 
     public void CollectData()
@@ -82,14 +86,35 @@ public class BattleManager : MonoBehaviour
 
     public void PlayerDoDamage(Unit target)
     {
-        Enemy EnemyScript = target.GetComponent<Enemy>();
         int DamageValue = ComboCalculation(target);
         bool isDead = target.TakeDamage(DamageValue);
         if (isDead)
         {
-            currentEnemiesActvive.Remove(EnemyScript);
+            if (target.GetComponent<Enemy>())
+            {
+                Enemy EnemyScript = target.GetComponent<Enemy>();
+                currentEnemiesActvive.Remove(EnemyScript);
+                NormalEnemyList.Remove(EnemyScript);
+                if (currentEnemiesActvive.Count == 0)
+                {
+                    CurrentEnemiesDead = true;
+                }
+                
+            }
+            else
+            {
+                Debug.Log("Strong died");
+                EnemyStrong EnemyScript = target.GetComponent<EnemyStrong>();
+                currentStrongEnemiesActvive.Remove(EnemyScript);
+                StrongEnemyList.Remove(EnemyScript);
+                if (currentStrongEnemiesActvive.Count == 0)
+                {
+                    CurrentStrongEnemiesDead = true;
+                }
+            }
+
             Destroy(target.gameObject);
-            if (currentEnemiesActvive.Count == 0)
+            if (currentEnemiesActvive.Count == 0 && currentStrongEnemiesActvive.Count == 0)
             {
                 SwitchToIdle?.Invoke();
             }
@@ -179,4 +204,20 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    private void ActivateStrongEnemiesInRoom()
+    {
+        if (currentStrongEnemiesActvive.Count == 0)
+        {
+            Debug.Log("ActivateStrongEnemiesinRoom");
+            for (int i = 0; i < StrongEnemyList.Count; i++)
+            {
+                if (StrongEnemyList[i].RoomIndex == CurrentBattleRoom)
+                {
+                    currentStrongEnemiesActvive.Add(StrongEnemyList[i]);
+                }
+            }
+        }
+    }
+
 }
