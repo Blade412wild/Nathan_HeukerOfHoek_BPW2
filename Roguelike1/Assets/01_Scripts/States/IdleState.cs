@@ -45,6 +45,10 @@ public class IdleState : BaseState
 
         //Debug.Log("collected Data");
     }
+    public void SwitchToIdel()
+    {
+        owner.SwitchState(typeof(IdleState));
+    }
 
 
 }

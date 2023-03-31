@@ -7,15 +7,4 @@ public class EnemyStrong : MonoBehaviour
     public int RoomIndex;
     public bool IsActive;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

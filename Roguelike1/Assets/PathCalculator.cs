@@ -8,12 +8,7 @@ public class PathCalculator : MonoBehaviour
     {
         int deltaX = CalculateTheDifferenceBetweenDistance(playerPosition.x, EnemyPosition.x);
         int deltaZ = CalculateTheDifferenceBetweenDistance(playerPosition.z, EnemyPosition.z);
-        Debug.Log("playerPosition.z = " + playerPosition.z);
-        Debug.Log("playerPosition.x = " + playerPosition.x);
-
-
         bool useXAxis = CheckWhichValueIsHigher(deltaX, deltaZ);
-        Debug.Log("useXAxis = " + useXAxis);
 
         Vector3Int nextStep;
         nextStep = NextStep(useXAxis, playerPosition, EnemyPosition);
@@ -82,8 +77,6 @@ public class PathCalculator : MonoBehaviour
 
         nextStep = EnemyPosition;
         //nextStep = new Vector3Int(EnemyPosition.x, EnemyPosition.y, EnemyPosition.z);
-        Debug.Log("Next Postion = " + nextStep);
-
         return nextStep;
     }
 }

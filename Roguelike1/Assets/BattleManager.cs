@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class BattleManager : MonoBehaviour
     // game events
     [SerializeField] private GameEvent SwitchToPlayer;
     [SerializeField] private GameEvent SwitchToEnemy;
+    [SerializeField] private GameEvent SwitchToIdle;
 
 
     private float damagemultiplier;
@@ -48,10 +50,21 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < currentEnemiesActvive.Count; i++)
         {
-            Debug.Log(currentEnemiesActvive.Count);
             currentEnemiesActvive[i].EnemyTurn();
+            Debug.Log(currentEnemiesActvive.Count);
         }
-        SwitchToPlayer.Invoke();
+
+        SwitchToPlayer?.Invoke();
+
+        //if (currentEnemiesActvive.Count <= 1)
+        //{
+        //    SwitchToIdle?.Invoke();
+        //}
+        //else
+        //{
+        //    SwitchToPlayer?.Invoke();
+        //}
+
     }
 
     public void CurrentEnemy(Unit Enemy)
@@ -76,6 +89,10 @@ public class BattleManager : MonoBehaviour
         {
             currentEnemiesActvive.Remove(EnemyScript);
             Destroy(target.gameObject);
+            if (currentEnemiesActvive.Count == 0)
+            {
+                SwitchToIdle?.Invoke();
+            }
         }
         DecreaseEnergy(playerUnit, 2);
         UpdateUI();

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class Enemy : MonoBehaviour
 {
@@ -99,22 +98,5 @@ public class Enemy : MonoBehaviour
     {
         BattleManager.Instance.EnemyDoDamage(EnemyUnit);
     }
-    //public void ActivateEnemiesInRoom()
-    //{
-    //    Debug.Log("ActivateEnemiesinRoom");
-    //    for (int i = 0; i < BattleManager.Instance.NormalEnemyList.Count; i++)
-    //    {
-    //        if (BattleManager.Instance.NormalEnemyList[i].RoomIndex == RoomIndex)
-    //        {
-    //            BattleManager.Instance.currentEnemiesActvive.Add(BattleManager.Instance.NormalEnemyList[i]);
-    //        }
-    //    }
-    //}
-
-    //private void StartEnemyTurn()
-    //{
-    //    ActivateEnemiesInRoom();
-    //}
-
 
 }

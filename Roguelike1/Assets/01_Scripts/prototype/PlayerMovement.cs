@@ -38,10 +38,6 @@ public class PlayerMovement : MonoBehaviour
         this.dungeon = dungeon.dungeon;
     }
 
-    private void Update()
-    {
-        
-    }
 
     private void Movement()
     {

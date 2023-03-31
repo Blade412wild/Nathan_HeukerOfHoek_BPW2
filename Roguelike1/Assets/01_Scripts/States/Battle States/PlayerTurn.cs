@@ -67,8 +67,4 @@ public class PlayerTurn : BaseState
         owner.SwitchState(typeof(EnemyTurn));
 
     }
-    public void SwitchToIdel()
-    {
-        owner.SwitchState(typeof(IdleState));
-    }
 }
