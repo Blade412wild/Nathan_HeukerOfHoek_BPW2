@@ -93,11 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void SwitchToPlayerTurn()
     {
-        PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
+        //PlayerInput.FreeRoam.Movement.performed += ctx => { Movement(); };
     }
 
     public void SwitchToEnemyTurn()
     {
-        PlayerInput.FreeRoam.Movement.performed -= ctx => { Movement(); };
+        //PlayerInput.FreeRoam.Movement.performed -= ctx => { Movement(); };
     }
 }
